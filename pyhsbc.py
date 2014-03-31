@@ -13,13 +13,13 @@ def read_accounts(user_id, memo_answer, secure_key):
     br['userID1'] = user_id
     br.select_form(nr=2)
     resp = br.submit()
-    print resp.geturl()
+    print (resp.geturl())
     #print resp.info()
 
     br.select_form(nr=0)
     br['userid'] = user_id
     resp = br.submit()
-    print resp.geturl()
+    print (resp.geturl())
     #print resp.info()
 
     br.select_form(nr=0)
@@ -27,18 +27,18 @@ def read_accounts(user_id, memo_answer, secure_key):
     br['idv_OtpCredential'] = secure_key
 
     resp = br.submit()
-    print resp.geturl()
+    print (resp.geturl())
     #print resp.info()
 
     br.select_form(name='form1')
     resp = br.submit()
-    print resp.geturl()
+    print (resp.geturl())
     #print resp.info()
     frame_container = resp.read()
     m = re.search('<frame name="FrameWork" src="(.+?)"', frame_container)
     navigate_url = 'https://client.hsbc.fr%s' % m.group(1)
     resp = br.open(navigate_url)
-    print resp.geturl()
+    print (resp.geturl())
     #print resp.info()
     html = resp.read()
     soup = bs4.BeautifulSoup(html)
@@ -50,7 +50,6 @@ def read_accounts(user_id, memo_answer, secure_key):
         accounts.append((td_account_num.string, td_account_name.string, td_amount.string))
     return accounts
 
-
 if __name__ == '__main__':
     import sys
 
@@ -59,4 +58,4 @@ if __name__ == '__main__':
     secure_key = sys.argv[3]
 
     for (num, name, amount) in read_accounts(user_id, memo_answer, secure_key):
-        print num.ljust(30), name.ljust(30), amount.rjust(10)
+        print '%s%s%s' % (num.ljust(30), name.ljust(30), amount.rjust(10))
