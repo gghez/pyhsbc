@@ -1,9 +1,13 @@
 pyhsbc
 ======
 
-Python module for automating HSBC website browsing.
+Python module for automating HSBC website browsing. Tested on HSBC France website, may need few url changes to work on different country website.
 
-Tested on HSBC France website, may need few url changes to work on different country website.
+
+Require following Python modules:
+- bs4 (http://www.crummy.com/software/BeautifulSoup/)
+- mechanize (http://wwwsearch.sourceforge.net/mechanize/)
+
 
 
 Usage sample (this is not real data):
